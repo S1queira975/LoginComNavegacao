@@ -4,14 +4,11 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Calendar;
 import java.util.List;
@@ -25,7 +22,7 @@ import br.edu.unifaj.cc.mobile.logincomnavegacao.model.entity.Hemocentro;
 import br.edu.unifaj.cc.mobile.logincomnavegacao.model.user.Doador;
 import br.edu.unifaj.cc.mobile.logincomnavegacao.util.PrefsManager;
 
-public class AgendamentoActivity extends AppCompatActivity {
+public class AgendamentoActivity extends BaseActivity {
     
     private Spinner spinnerHemocentro;
     private EditText editData;

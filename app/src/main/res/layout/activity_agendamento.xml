@@ -1,101 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+    Tela de agendamento. Mesmo padrão: cabeçalho vermelho da marca + cartão de
+    formulário na cor de superfície do tema.
+-->
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootConteudo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="24dp"
-    android:background="#AD2C2C">
+    android:clipToPadding="false"
+    android:fillViewport="true">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:fontFamily="@font/bungee"
-        android:text="Agendar Doação"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="Selecione o Hemocentro"
-        android:textColor="#FDEAEA"
-        android:textSize="14sp" />
-
-    <Spinner
-        android:id="@+id/spinnerHemocentro"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginBottom="16dp"
-        android:background="#FFFFFF"
-        android:padding="8dp" />
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="Data"
-        android:textColor="#FDEAEA"
-        android:textSize="14sp" />
+        <LinearLayout
+            android:id="@+id/conteudo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/screen_margin"
+            android:layout_marginTop="@dimen/space_l"
+            android:layout_marginEnd="@dimen/screen_margin"
+            android:layout_marginBottom="@dimen/space_l"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_max="@dimen/content_max_width">
 
-    <EditText
-        android:id="@+id/editData"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:background="#FFFFFF"
-        android:clickable="true"
-        android:focusable="false"
-        android:fontFamily="@font/montserrat_medium"
-        android:hint="Selecione a data"
-        android:padding="12dp"
-        android:textColor="#000000"
-        android:textSize="16sp" />
+            <!-- ===== Cabeçalho ===== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_hero"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/space_l">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="Hora"
-        android:textColor="#FDEAEA"
-        android:textSize="14sp" />
+                <ImageView
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_calendar"
+                    app:tint="@color/on_hero" />
 
-    <EditText
-        android:id="@+id/editHora"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:background="#FFFFFF"
-        android:clickable="true"
-        android:focusable="false"
-        android:fontFamily="@font/montserrat_medium"
-        android:hint="Selecione a hora"
-        android:padding="12dp"
-        android:textColor="#000000"
-        android:textSize="16sp" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_m"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btnAgendar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="#9B2020"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="Agendar"
-        android:textColor="#FFFFFF" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tela_agendamento_titulo"
+                        android:textAppearance="@style/TextAppearance.App.Display"
+                        android:textColor="@color/on_hero" />
 
-    <Button
-        android:id="@+id/btnVoltar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#5B0404"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="Voltar"
-        android:textColor="#FFFFFF" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_3xs"
+                        android:text="@string/tela_agendamento_subtitulo"
+                        android:textAppearance="@style/TextAppearance.App.Body"
+                        android:textColor="@color/on_hero_variant" />
+                </LinearLayout>
+            </LinearLayout>
 
-</LinearLayout>
+            <!-- ===== Formulário ===== -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.App.Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_l">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/space_l">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/space_m"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/space_3xs"
+                            android:drawablePadding="@dimen/space_3xs"
+                            android:gravity="center_vertical"
+                            android:text="@string/tela_agendamento_secao_hemocentro"
+                            android:textAppearance="@style/TextAppearance.App.Label"
+                            app:drawableStartCompat="@drawable/ic_local"
+                            app:drawableTint="?attr/colorPrimary" />
+
+                        <Spinner
+                            android:id="@+id/spinnerHemocentro"
+                            style="@style/Widget.App.Spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/field_min_height"
+                            android:spinnerMode="dropdown" />
+                    </LinearLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.App.TextField"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/space_m"
+                        android:hint="@string/tela_agendamento_secao_data"
+                        app:endIconMode="custom"
+                        app:endIconDrawable="@drawable/ic_calendar"
+                        app:endIconTint="?attr/colorOnSurfaceVariant"
+                        app:startIconDrawable="@drawable/ic_calendar">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editData"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:cursorVisible="false"
+                            android:focusable="true"
+                            android:focusableInTouchMode="false"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:inputType="none"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.App.TextField"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/space_l"
+                        android:hint="@string/tela_agendamento_secao_hora"
+                        app:endIconMode="custom"
+                        app:endIconDrawable="@drawable/ic_schedule"
+                        app:endIconTint="?attr/colorOnSurfaceVariant"
+                        app:startIconDrawable="@drawable/ic_schedule">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editHora"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:cursorVisible="false"
+                            android:focusable="true"
+                            android:focusableInTouchMode="false"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:inputType="none"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnAgendar"
+                        style="@style/Widget.App.Button.Primary"
+                        android:layout_width="match_parent"
+                        android:text="@string/tela_agendamento_botao"
+                        app:icon="@drawable/ic_calendar"
+                        app:iconGravity="textStart" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnVoltar"
+                        style="@style/Widget.App.Button.Text"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/space_xs"
+                        android:text="@string/tela_voltar" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
