@@ -1,102 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+    Fluxo do agente de saúde: escolha do agendamento antes de registrar a coleta.
+
+    A tela é somente-leitura. Data, hora e local vêm do agendamento escolhido
+    pelo doador, então nada é digitado aqui; o registro em si acontece na
+    RegistrarDoacaoActivity. O RecyclerView usa AutoFitGridLayoutManager para
+    ganhar colunas sozinho em telas largas.
+-->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootConteudo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#AD2C2C">
+    android:clipToPadding="false">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/conteudo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/screen_margin"
+        android:layout_marginTop="@dimen/space_l"
+        android:layout_marginEnd="@dimen/screen_margin"
+        android:layout_marginBottom="@dimen/space_l"
         android:orientation="vertical"
-        android:padding="24dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_max="@dimen/content_max_width">
 
+        <!-- ===== Cabeçalho ===== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_hero"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/space_l">
+
+            <ImageView
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_drop"
+                app:tint="@color/on_hero" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_m"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tela_doacao_titulo"
+                    android:textAppearance="@style/TextAppearance.App.Display"
+                    android:textColor="@color/on_hero" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_3xs"
+                    android:text="@string/tela_doacao_subtitulo"
+                    android:textAppearance="@style/TextAppearance.App.Body"
+                    android:textColor="@color/on_hero_variant" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ===== Lista de agendamentos elegíveis ===== -->
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/bungee"
-            android:text="Doação de Sangue"
-            android:textColor="#FFFFFF"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="8dp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_medium"
-            android:text="Registrar Doação"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="24dp" />
-
-        <EditText
-            android:id="@+id/editData"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Data (ex: 13/04/2026)"
-            android:inputType="date"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#FBFBFB"
-            android:fontFamily="@font/montserrat_medium"
-            android:backgroundTint="#5B0404"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginTop="@dimen/space_m"
+            android:layout_marginBottom="@dimen/space_xs"
+            android:text="@string/tela_doacao_secao"
+            android:textAppearance="@style/TextAppearance.App.Label" />
 
-        <EditText
-            android:id="@+id/editLocal"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerAgendamentos"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Local (hospital ou hemocentro)"
-            android:inputType="text"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#FBFBFB"
-            android:fontFamily="@font/montserrat_medium"
-            android:backgroundTint="#5B0404"
-            android:layout_marginBottom="16dp" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:paddingBottom="@dimen/space_xs"
+            android:scrollbars="none" />
 
-        <EditText
-            android:id="@+id/editVolumeMl"
+        <!-- Estado vazio: nada a registrar agora -->
+        <LinearLayout
+            android:id="@+id/estadoVazio"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Volume (ml)"
-            android:inputType="number"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#FBFBFB"
-            android:fontFamily="@font/montserrat_medium"
-            android:backgroundTint="#5B0404"
-            android:layout_marginBottom="16dp" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
 
-        <EditText
-            android:id="@+id/editQuantidade"
+            <ImageView
+                android:layout_width="@dimen/logo_size"
+                android:layout_height="@dimen/logo_size"
+                android:contentDescription="@null"
+                android:src="@drawable/ic_inbox"
+                app:tint="?attr/colorOutline" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_m"
+                android:gravity="center"
+                android:text="@string/tela_doacao_vazio"
+                android:textAppearance="@style/TextAppearance.App.Body" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_xs"
+                android:gravity="center"
+                android:text="@string/tela_doacao_vazio_dica"
+                android:textAppearance="@style/TextAppearance.App.Caption" />
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAgendamentos"
+            style="@style/Widget.App.Button.Text"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Quantidade de bolsas"
-            android:inputType="number"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#FBFBFB"
-            android:fontFamily="@font/montserrat_medium"
-            android:backgroundTint="#5B0404"
-            android:layout_marginBottom="24dp" />
+            android:layout_marginTop="@dimen/space_xs"
+            android:text="@string/tela_doacao_botao_agendar"
+            app:icon="@drawable/ic_calendar"
+            app:iconGravity="textStart" />
 
-        <Button
-            android:id="@+id/btnSalvar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#9B2020"
-            android:fontFamily="@font/montserrat_medium"
-            android:text="Salvar"
-            android:textColor="#FFFFFF"
-            android:layout_marginBottom="16dp" />
-
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnVoltar"
+            style="@style/Widget.App.Button.Text"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#611D1D"
-            android:fontFamily="@font/montserrat_medium"
-            android:text="Voltar"
-            android:textColor="#FFFFFF" />
+            android:text="@string/tela_voltar"
+            app:icon="@drawable/ic_logout"
+            app:iconGravity="textStart" />
 
     </LinearLayout>
 
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

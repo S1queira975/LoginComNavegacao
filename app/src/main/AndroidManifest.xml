@@ -33,10 +33,16 @@
             android:name=".activity.HomeActivity"
             android:exported="false" />
         
-        <!-- Tela de Registro de Doação -->
+        <!-- Tela do agente que escolhe o agendamento a registrar -->
         <activity
             android:name=".activity.DoacaoActivity"
             android:exported="false" />
+
+        <!-- Confirmação da coleta: data e local vêm do agendamento -->
+        <activity
+            android:name=".activity.RegistrarDoacaoActivity"
+            android:exported="false"
+            android:parentActivityName=".activity.DoacaoActivity" />
         
         <!-- Tela de Histórico -->
         <activity
