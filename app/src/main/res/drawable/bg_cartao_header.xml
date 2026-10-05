@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Cabeçalho do cartazinho do doador.
+
+    É o topo do cartão, então só os cantos de cima são arredondados - assim ele
+    encosta no corpo do cartão e os dois leem como um objeto só. O gradiente é
+    o mesmo da marca (hero_start/hero_end), que já tem contraste validado.
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:angle="135"
+        android:startColor="@color/hero_start"
+        android:centerColor="@color/hero_end"
+        android:endColor="@color/hero_start"
+        android:type="linear" />
+    <corners
+        android:bottomLeftRadius="0dp"
+        android:bottomRightRadius="0dp"
+        android:topLeftRadius="@dimen/corner_m"
+        android:topRightRadius="@dimen/corner_m" />
+</shape>

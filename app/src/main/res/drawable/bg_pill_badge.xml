@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Pílula do tipo sanguíneo no cartazinho do doador.
+
+    Fundo branco e texto no vermelho da marca: é o mesmo par do logo, que já
+    funciona nos dois temas, então o selo de tipo sanguíneo nunca fica
+    ilegível nem no modo escuro.
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/logo_badge" />
+    <corners android:radius="@dimen/corner_full" />
+</shape>

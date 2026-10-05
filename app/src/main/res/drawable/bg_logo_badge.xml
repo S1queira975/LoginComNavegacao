@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Circulo claro atras do logo. O logo e vermelho, entao o fundo que o envolve
+    e sempre claro - e o que garante o auto-contraste da marca nos dois temas.
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="@color/logo_badge" />
+</shape>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Fundo do topo das telas de login/cadastro.
+    Cobre a tela inteira (edge-to-edge) para o gradiente aparecer atras da barra
+    de status; as duas cores sao recursos, entao o tema escuro usa o tom certo.
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:angle="135"
+        android:startColor="@color/hero_start"
+        android:centerColor="@color/hero_end"
+        android:endColor="@color/hero_start"
+        android:type="linear" />
+    <corners android:radius="16dp" />
+</shape>
