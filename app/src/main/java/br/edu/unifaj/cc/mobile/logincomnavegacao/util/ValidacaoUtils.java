@@ -48,6 +48,14 @@ public class ValidacaoUtils {
     public static boolean validarVolumeDoacao(int volumeMl) {
         return volumeMl >= 200 && volumeMl <= 470;
     }
+
+    /**
+     * Faixa de bolsas coletadas em um agendamento. O agente registra o que
+     * saiu da sessão de coleta, então o valor varia de um agendamento para outro.
+     */
+    public static boolean validarQuantidadeBolsas(int quantidade) {
+        return quantidade >= 1 && quantidade <= 6;
+    }
     
     public static boolean validarData(String data) {
         if (data == null || data.isEmpty()) {
