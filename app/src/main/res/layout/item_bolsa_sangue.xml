@@ -1,65 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Item de bolsa de sangue do histórico. -->
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.App.Card.Filled"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp"
-    android:background="#FF4343"
-    android:orientation="vertical"
-    android:padding="12dp">
+    android:layout_margin="@dimen/space_3xs">
 
-    <TextView
-        android:id="@+id/txtCodigo"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Código: BS-12345678"
-        android:textSize="14sp"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold" />
+        android:orientation="vertical"
+        android:padding="@dimen/space_m">
 
-    <TextView
-        android:id="@+id/txtTipoSanguineo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="Tipo: O+"
-        android:textColor="#FFFFFF"
-        android:textSize="14sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/txtVolume"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="Volume: 450ml"
-        android:textColor="#FFFFFF"
-        android:textSize="14sp" />
+            <TextView
+                android:id="@+id/txtCodigo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textAppearance="@style/TextAppearance.App.Title" />
 
-    <TextView
-        android:id="@+id/txtDataColeta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="Coleta: 14/04/2026"
-        android:textColor="#FFFFFF"
-        android:textSize="14sp" />
+            <TextView
+                android:id="@+id/txtStatus"
+                style="@style/Widget.App.StatusPill"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_xs" />
+        </LinearLayout>
 
-    <TextView
-        android:id="@+id/txtValidade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="Validade: 26/05/2026"
-        android:textColor="#FFFFFF"
-        android:textSize="14sp" />
+        <TextView
+            android:id="@+id/txtTipoSanguineo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_xs"
+            android:textAppearance="@style/TextAppearance.App.Body" />
 
-    <TextView
-        android:id="@+id/txtStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="Status: DISPONIVEL"
-        android:textColor="#90EE90"
-        android:textSize="14sp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/txtQuantidade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_3xs"
+            android:textAppearance="@style/TextAppearance.App.Body"
+            android:textColor="?attr/colorPrimary" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/txtVolume"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_3xs"
+            android:textAppearance="@style/TextAppearance.App.Body" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/space_s"
+            android:layout_marginBottom="@dimen/space_s"
+            android:background="?attr/colorOutlineVariant" />
+
+        <!-- Local herdado do agendamento de coleta -->
+        <TextView
+            android:id="@+id/txtLocal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textAppearance="@style/TextAppearance.App.Caption" />
+
+        <TextView
+            android:id="@+id/txtDataColeta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_3xs"
+            android:textAppearance="@style/TextAppearance.App.Caption" />
+
+        <TextView
+            android:id="@+id/txtValidade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_3xs"
+            android:textAppearance="@style/TextAppearance.App.Caption" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
