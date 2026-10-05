@@ -1,3 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">DoacaoSangue</string>
+
+    <!-- ================= Telas ================= -->
+    <string name="tela_login_titulo">Doação de Sangue</string>
+    <string name="tela_login_subtitulo">Cada gesto salva uma vida. Faça parte.</string>
+    <string name="tela_login_secao">Acessar conta</string>
+    <string name="tela_login_botao_entrar">Entrar</string>
+    <string name="tela_login_botao_cadastro">Ainda não tenho cadastro</string>
+
+    <string name="tela_cadastro_subtitulo">Crie sua conta de doador em poucos passos</string>
+    <string name="tela_cadastro_secao">Cadastro</string>
+    <string name="tela_cadastro_botao">Cadastrar</string>
+    <string name="tela_cadastro_botao_voltar">Voltar para o login</string>
+
+    <string name="tela_home_nome_padrao">Doador</string>
+    <string name="tela_home_tipo_padrao">—</string>
+    <string name="tela_home_ver_perfil">Meu perfil</string>
+    <string name="tela_home_abrir_perfil">Ver meu perfil</string>
+    <string name="tela_home_registrar_doacao">Registrar coleta</string>
+    <string name="tela_home_registrar_doacao_descricao">Agente de saúde registra a coleta</string>
+    <string name="tela_home_agendar_doacao">Agendar doação</string>
+    <string name="tela_home_agendar_doacao_descricao">Escolha hemocentro, data e horário</string>
+    <string name="tela_home_ver_historico">Ver histórico</string>
+    <string name="tela_home_ver_historico_descricao">Suas bolsas de sangue doadas</string>
+    <string name="tela_home_meus_agendamentos">Meus agendamentos</string>
+    <string name="tela_home_meus_agendamentos_descricao">Acompanhe e cancele suas reservas</string>
+    <string name="tela_home_sair">Sair da conta</string>
+
+    <string name="tela_doacao_titulo">Registro de Coleta</string>
+    <string name="tela_doacao_subtitulo">Agente de saúde · escolha o agendamento</string>
+    <string name="tela_doacao_secao">Agendamentos prontos para registro</string>
+    <string name="tela_doacao_vazio">Nenhum agendamento disponível para registro</string>
+    <string name="tela_doacao_vazio_dica">Só entra na lista o agendamento com data de hoje ou anterior, que ainda não tem coleta registrada.</string>
+    <string name="tela_doacao_botao_agendar">Ver agendamentos</string>
+
+    <string name="tela_registro_titulo">Confirmar Coleta</string>
+    <string name="tela_registro_subtitulo">Informe o que foi coletado</string>
+    <string name="tela_registro_secao_agendamento">Agendamento selecionado</string>
+    <string name="tela_registro_secao_bolsa">Dados da bolsa</string>
+    <string name="tela_registro_botao">Registrar coleta</string>
+    <string name="tela_registro_tipo_doador">Tipo do doador: %1$s</string>
+    <string name="tela_registro_tipo_padrao">Tipo do doador: —</string>
+
+    <string name="tela_agendamento_titulo">Agendar Doação</string>
+    <string name="tela_agendamento_subtitulo">Reserve seu horário no hemocentro</string>
+    <string name="tela_agendamento_secao_hemocentro">Hemocentro</string>
+    <string name="tela_agendamento_secao_data">Data</string>
+    <string name="tela_agendamento_secao_hora">Hora</string>
+    <string name="tela_agendamento_botao">Confirmar agendamento</string>
+
+    <string name="tela_historico_titulo">Histórico</string>
+    <string name="tela_historico_subtitulo">Bolsas de sangue doadas</string>
+    <string name="tela_historico_vazio">Nenhuma doação registrada ainda</string>
+
+    <string name="tela_agendamentos_titulo">Meus agendamentos</string>
+    <string name="tela_agendamentos_vazio">Nenhum agendamento encontrado</string>
+    <string name="tela_voltar">Voltar</string>
+
+    <!-- ================= Perfil / cartazinho do doador ================= -->
+    <string name="tela_perfil_titulo">Meu Perfil</string>
+    <string name="tela_perfil_adesivo">Cartão de doador</string>
+    <string name="tela_perfil_rodape">Doação de sangue</string>
+    <string name="tela_perfil_tipo_selo">Tipo</string>
+    <string name="tela_perfil_papel">Doador</string>
+    <string name="tela_perfil_nivel_titulo">Nível de doador</string>
+    <string name="tela_perfil_nivel_maximo">Nível máximo alcançado</string>
+    <plurals name="tela_perfil_nivel_progresso">
+        <item quantity="one">%1$d de %2$d registro</item>
+        <item quantity="other">%1$d de %2$d registros</item>
+    </plurals>
+    <string name="tela_perfil_campo_nome">Nome</string>
+    <string name="tela_perfil_campo_email">Email</string>
+    <string name="tela_perfil_campo_cpf">CPF</string>
+    <string name="tela_perfil_campo_tipo">Tipo sanguíneo</string>
+    <string name="tela_perfil_cpf_fixo">Identifica seus agendamentos, por isso não pode ser alterado</string>
+    <string name="tela_perfil_nome_padrao">Doador</string>
+    <string name="tela_perfil_inicial_padrao">D</string>
+    <string name="tela_perfil_cpf_nao_informado">Não informado</string>
+    <string name="tela_perfil_tipo_padrao">—</string>
+    <string name="tela_perfil_tipo_nao_informado">Não informado</string>
+    <string name="tela_perfil_editar">Editar perfil</string>
+
+    <!-- ================= Editar perfil ================= -->
+    <string name="tela_editar_perfil_titulo">Editar Perfil</string>
+    <string name="tela_editar_perfil_secao">Dados de acesso</string>
+    <string name="tela_editar_perfil_secao_senha">Alterar senha</string>
+    <string name="tela_editar_perfil_secao_senha_dica">Deixe em branco para manter a senha atual</string>
+    <string name="tela_editar_perfil_senha_atual">Senha atual</string>
+    <string name="tela_editar_perfil_nova_senha">Nova senha</string>
+    <string name="tela_editar_perfil_fixo">CPF e tipo sanguíneo são exibidos, mas não editáveis</string>
+    <string name="tela_editar_perfil_botao">Salvar alterações</string>
+    <string name="tela_editar_perfil_salvo">Perfil atualizado</string>
+    <string name="tela_editar_perfil_erro_nome">Informe seu nome</string>
+    <string name="tela_editar_perfil_erro_email">Informe seu email</string>
+    <string name="tela_editar_perfil_erro_email_invalido">Email inválido</string>
+    <string name="tela_editar_perfil_erro_senha_parcial">Preencha a senha atual e a nova senha</string>
+    <string name="tela_editar_perfil_erro_senha_atual">Senha atual incorreta</string>
+    <string name="tela_editar_perfil_erro_senha_curta">A nova senha deve ter pelo menos 6 caracteres</string>
+    <string name="tela_editar_perfil_erro_sem_dados">Faça login novamente para editar o perfil</string>
+
+    <!-- ================= Campos ================= -->
+    <string name="campo_nome">Nome</string>
+    <string name="campo_email">Email</string>
+    <string name="campo_senha">Senha</string>
+    <string name="campo_senha_ajuda">Mínimo de 6 caracteres</string>
+    <string name="campo_cpf">CPF</string>
+    <string name="campo_tipo_sanguineo">Tipo sanguíneo</string>
+    <string name="campo_volume_bolsa">Volume por bolsa (ml)</string>
+    <string name="campo_volume_ajuda">De 200 a 470 ml</string>
+    <string name="campo_quantidade">Quantidade de bolsas</string>
+    <string name="campo_quantidade_ajuda">De 1 a 6 bolsas</string>
+    <string name="campo_data_agendada">Data do agendamento</string>
+    <string name="campo_local_agendado">Hemocentro do agendamento</string>
+    <string name="campo_origem_ajuda">Vem do agendamento, não é editável</string>
+
+    <!-- ================= Itens de lista ================= -->
+    <string name="item_bolsa_codigo">Código: %1$s</string>
+    <string name="item_bolsa_tipo">Tipo: %1$s</string>
+    <string name="item_bolsa_volume">Volume: %1$d ml</string>
+    <string name="item_bolsa_quantidade">Quantidade: %1$s</string>
+    <string name="item_bolsa_local">Local: %1$s</string>
+    <string name="item_bolsa_local_vazio">Local: —</string>
+    <string name="item_bolsa_coleta">Coleta: %1$s</string>
+    <string name="item_bolsa_validade">Validade: %1$s</string>
+    <string name="item_agendamento_cancelar">Cancelar</string>
+    <string name="item_agendamento_data_label">Data</string>
+    <string name="item_agendamento_hora_label">Hora</string>
+    <string name="item_registro_data_hora">%1$s às %2$s</string>
+    <plurals name="item_agendamento_bolsas">
+        <item quantity="one">%1$d bolsa registrada</item>
+        <item quantity="other">%1$d bolsas registradas</item>
+    </plurals>
+    <plurals name="item_bolsa_quantidade_bolsas">
+        <item quantity="one">%1$d bolsa</item>
+        <item quantity="other">%1$d bolsas</item>
+    </plurals>
+    <string name="item_doacao_data">Data: %1$s</string>
+    <string name="item_doacao_local">Local: %1$s</string>
+    <string name="item_doacao_quantidade">Quantidade: %1$s</string>
+
+    <!-- ================= Mensagens ================= -->
+    <string name="msg_coleta_registrada">Coleta registrada com sucesso</string>
+    <string name="msg_coleta_duplicada">Este agendamento já tem coleta registrada</string>
+    <string name="msg_coleta_nao_elegivel">Este agendamento não está mais disponível para registro</string>
+    <string name="msg_agendamento_nao_encontrado">Agendamento não encontrado</string>
+    <string name="msg_doador_sem_tipo">Doador sem tipo sanguíneo cadastrado</string>
+    <string name="msg_informe_volume">Informe o volume por bolsa</string>
+    <string name="msg_informe_quantidade">Informe a quantidade de bolsas</string>
+    <string name="msg_volume_invalido">Volume deve estar entre 200ml e 470ml</string>
+    <string name="msg_quantidade_invalida">A quantidade deve estar entre 1 e 6 bolsas</string>
 </resources>
