@@ -1,89 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+    Tela principal.
+
+    O menu virou uma lista de cards em RecyclerView com AutoFitGridLayoutManager:
+    o numero de colunas e calculado pela largura util da tela (1 no celular,
+    2 ou mais em tablets), sem precisa de outro layout.
+-->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootConteudo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="24dp"
-    android:gravity="center"
-    android:background="#AD2C2C">
+    android:clipToPadding="false">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="@font/bungee"
-        android:text="Doação de Sangue"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+    <LinearLayout
+        android:id="@+id/conteudo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/screen_margin"
+        android:layout_marginTop="@dimen/space_l"
+        android:layout_marginEnd="@dimen/screen_margin"
+        android:layout_marginBottom="@dimen/space_l"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_max="@dimen/content_max_width">
 
-    <TextView
-        android:id="@+id/txtNomeUsuario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="Olá, Usuário!"
-        android:textColor="#FDEAEA"
-        android:textSize="18sp" />
+        <!--
+            Cartazinho do doador no lugar da saudação: mostra quem está logado
+            e abre a tela de perfil. O toque no cartão inteiro é o alvo.
+        -->
+        <LinearLayout
+            android:id="@+id/cardPerfil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_hero"
+            android:baselineAligned="false"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="@dimen/space_l">
 
-    <TextView
-        android:id="@+id/txtTipoSanguineo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="Tipo Sanguíneo: -"
-        android:textColor="#FBFBFB"
-        android:textSize="14sp" />
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_logo_badge"
+                android:padding="@dimen/space_xs">
 
-    <Button
-        android:id="@+id/btnRegistrarDoacao"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="#9B2020"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="Registrar Doação"
-        android:textColor="#FFFFFF" />
+                <ImageView
+                    android:layout_width="@dimen/logo_size"
+                    android:layout_height="@dimen/logo_size"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@null"
+                    android:src="@drawable/logo" />
+            </FrameLayout>
 
-    <Button
-        android:id="@+id/btnAgendarDoacao"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="#9B2020"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="Agendar Doação"
-        android:textColor="#FFFFFF" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_m"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btnVerHistorico"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="#9B2020"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="Ver Histórico"
-        android:textColor="#FFFFFF" />
+                <TextView
+                    android:id="@+id/txtNomeUsuario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                        android:text="@string/tela_home_nome_padrao"
+                    android:textAppearance="@style/TextAppearance.App.Title"
+                    android:textColor="@color/on_hero" />
 
-    <Button
-        android:id="@+id/btnVerAgendamentos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="#9B2020"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="Meus Agendamentos"
-        android:textColor="#FFFFFF" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_s"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/btnSair"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#5B0404"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="Sair"
-        android:textColor="#FFFFFF" />
+                    <!-- Selo do tipo sanguíneo, no mesmo par de cores do logo -->
+                    <TextView
+                        android:id="@+id/txtTipoSanguineo"
+                        style="@style/TextAppearance.App.BloodType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_pill_badge"
+                        android:paddingStart="@dimen/space_s"
+                        android:paddingTop="@dimen/space_2xs"
+                        android:paddingEnd="@dimen/space_s"
+                        android:paddingBottom="@dimen/space_2xs"
+                        android:text="@string/tela_home_tipo_padrao" />
 
-</LinearLayout>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_s"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="@string/tela_home_ver_perfil"
+                        android:textAppearance="@style/TextAppearance.App.Caption"
+                        android:textColor="@color/on_hero_variant" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                android:layout_marginStart="@dimen/space_xs"
+                android:contentDescription="@string/tela_home_abrir_perfil"
+                android:src="@drawable/ic_chevron_right"
+                app:tint="@color/on_hero_variant" />
+        </LinearLayout>
+
+        <!-- ===== Ações (grade responsiva) ===== -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerMenu"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/space_m"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:paddingBottom="@dimen/space_xs"
+            android:scrollbars="none" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSair"
+            style="@style/Widget.App.Button.Danger"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/space_xs"
+            android:text="@string/tela_home_sair"
+            app:icon="@drawable/ic_logout"
+            app:iconGravity="textStart" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
