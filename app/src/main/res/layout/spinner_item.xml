@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Item fechado do Spinner. Usa as cores do tema, então acompanha claro/escuro. -->
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/spinner_item_text"
     android:layout_width="match_parent"
-    android:layout_height="48dp"
+    android:layout_height="wrap_content"
+    android:ellipsize="end"
+    android:fontFamily="@font/montserrat_medium"
     android:gravity="center_vertical"
-    android:paddingStart="12dp"
-    android:paddingEnd="12dp"
-    android:textColor="#FFFFFF"
-    android:textSize="16sp"
-    android:background="#AD2C2C" />
+    android:maxLines="1"
+    android:minHeight="@dimen/touch_target_min"
+    android:paddingStart="@dimen/space_m"
+    android:paddingEnd="@dimen/space_m"
+    android:textColor="?attr/colorOnSurface"
+    android:textSize="@dimen/text_body" />

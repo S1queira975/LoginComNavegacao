@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Item do dropdown do Spinner, sobre a superfície do tema. -->
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/spinner_dropdown_text"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="12dp"
-    android:textColor="#FFFFFF"
-    android:textSize="16sp"
-    android:background="#AD2C2C" />
+    android:background="?attr/colorSurface"
+    android:ellipsize="end"
+    android:fontFamily="@font/montserrat_medium"
+    android:gravity="center_vertical"
+    android:maxLines="1"
+    android:minHeight="@dimen/touch_target_min"
+    android:paddingStart="@dimen/space_m"
+    android:paddingTop="@dimen/space_s"
+    android:paddingEnd="@dimen/space_m"
+    android:paddingBottom="@dimen/space_s"
+    android:textColor="?attr/colorOnSurface"
+    android:textSize="@dimen/text_body"
+    app:drawableTint="?attr/colorPrimary" />

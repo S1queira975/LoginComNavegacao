@@ -1,80 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+    Tela de Login.
+
+    - O gradiente vermelho ocupa a tela inteira (edge-to-edge) para manter a
+      identidade da marca inclusive atras da barra de status.
+    - O formulario fica num cartao com ?attr/colorSurface, portanto o contraste
+      texto/fundo e resolvido pelo tema em claro e em escuro.
+    - rootConteudo e o container que recebe as margens da barra do sistema
+      (ver BaseActivity), por isso o conteudo nunca fica sob a status bar.
+-->
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootConteudo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="24dp"
-    android:gravity="center"
-    android:background="#AD2C2C"> <!-- cor de fundo -->
+    android:background="@drawable/bg_hero"
+    android:clipToPadding="false"
+    android:fillViewport="true">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="276dp"
-        android:layout_height="91dp"
-        app:srcCompat="@drawable/logo" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:fontFamily="@font/bungee"
-        android:text="Doação de Sangue"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="LOGIN"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/editEmail"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="#5B0404"
-        android:fontFamily="@font/montserrat_medium"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:textColor="#FFFCFC"
-        android:textColorHint="#FBFBFB" />
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/editSenha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:backgroundTint="#5B0404"
-        android:fontFamily="@font/montserrat_medium"
-        android:hint="Senha"
-        android:inputType="textPassword"
-        android:textColor="#F4F2F2"
-        android:textColorHint="#FFFFFF" />
+        <LinearLayout
+            android:id="@+id/conteudo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/screen_margin"
+            android:layout_marginTop="@dimen/space_xl"
+            android:layout_marginEnd="@dimen/screen_margin"
+            android:layout_marginBottom="@dimen/space_l"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_max="@dimen/content_max_width">
 
-    <Button
-        android:id="@+id/btnEntrar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="#9B2020"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="Entrar"
-        android:textColor="#FFFFFF" />
+            <!-- Logo: circulo claro para o logo vermelho nunca sumir no fundo -->
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_logo_badge"
+                android:padding="@dimen/space_l">
 
-    <Button
-        android:id="@+id/btnCadastrar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#611D1D"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="Ir para cadastro"
-        android:textColor="#FFFFFF" />
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="@dimen/hero_logo_size"
+                    android:layout_height="@dimen/hero_logo_size"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@null"
+                    android:src="@drawable/logo" />
+            </FrameLayout>
 
-</LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_l"
+                android:text="@string/tela_login_titulo"
+                android:textAppearance="@style/TextAppearance.App.Hero" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_xs"
+                android:gravity="center"
+                android:text="@string/tela_login_subtitulo"
+                android:textAppearance="@style/TextAppearance.App.Body"
+                android:textColor="@color/on_hero_variant" />
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.App.Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_xl">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/space_l">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/space_m"
+                        android:text="@string/tela_login_secao"
+                        android:textAppearance="@style/TextAppearance.App.Headline" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.App.TextField"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/space_m"
+                        android:hint="@string/campo_email"
+                        app:startIconDrawable="@drawable/ic_email">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.App.TextField"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/space_l"
+                        android:hint="@string/campo_senha"
+                        app:endIconMode="password_toggle"
+                        app:startIconDrawable="@drawable/ic_lock">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editSenha"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:inputType="textPassword"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnEntrar"
+                        style="@style/Widget.App.Button.Primary"
+                        android:layout_width="match_parent"
+                        android:text="@string/tela_login_botao_entrar" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnCadastrar"
+                        style="@style/Widget.App.Button.Text"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/space_xs"
+                        android:text="@string/tela_login_botao_cadastro"
+                        app:icon="@drawable/ic_person"
+                        app:iconGravity="textStart"
+                        app:iconPadding="@dimen/space_xs" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
