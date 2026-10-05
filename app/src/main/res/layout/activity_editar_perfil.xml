@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Edição do perfil. Mesmo esqueleto do cadastro (TextInputLayout + tokens do
+    tema), mas só com o que o doador pode mudar de fato: nome, email e senha.
+
+    CPF e tipo sanguíneo aparecem num aviso, sem campo de edição, porque um é a
+    chave que liga o doador aos agendamentos e o outro vem do cadastro.
+-->
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rootConteudo"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/conteudo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/screen_margin"
+            android:layout_marginTop="@dimen/space_l"
+            android:layout_marginEnd="@dimen/screen_margin"
+            android:layout_marginBottom="@dimen/space_l"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_max="@dimen/content_max_width">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tela_editar_perfil_titulo"
+                android:textAppearance="@style/TextAppearance.App.Display" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_m"
+                android:layout_marginBottom="@dimen/space_s"
+                android:text="@string/tela_editar_perfil_secao"
+                android:textAppearance="@style/TextAppearance.App.Label" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.App.TextField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/space_m"
+                android:hint="@string/campo_nome"
+                app:startIconDrawable="@drawable/ic_person">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editNome"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:inputType="textPersonName|textCapWords"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.App.TextField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/space_m"
+                android:hint="@string/campo_email"
+                app:startIconDrawable="@drawable/ic_email">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_s"
+                android:layout_marginBottom="@dimen/space_xs"
+                android:text="@string/tela_editar_perfil_secao_senha"
+                android:textAppearance="@style/TextAppearance.App.Label" />
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.App.Card.Filled"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/space_m">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/space_l">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/space_m"
+                        android:text="@string/tela_editar_perfil_secao_senha_dica"
+                        android:textAppearance="@style/TextAppearance.App.Caption" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.App.TextField"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/space_m"
+                        android:hint="@string/tela_editar_perfil_senha_atual"
+                        app:endIconMode="password_toggle"
+                        app:startIconDrawable="@drawable/ic_lock">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editSenhaAtual"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:inputType="textPassword"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.App.TextField"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/tela_editar_perfil_nova_senha"
+                        app:endIconMode="password_toggle"
+                        app:helperText="@string/campo_senha_ajuda"
+                        app:startIconDrawable="@drawable/ic_lock">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editNovaSenha"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:inputType="textPassword"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Campos que o doador vê mas não pode mexer -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.App.Card.Filled"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/space_m">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/space_l">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tela_perfil_campo_tipo"
+                        android:textAppearance="@style/TextAppearance.App.Caption" />
+
+                    <TextView
+                        android:id="@+id/txtTipoSanguineo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_3xs"
+                        android:background="@drawable/bg_pill_badge"
+                        android:paddingStart="@dimen/space_s"
+                        android:paddingTop="@dimen/space_2xs"
+                        android:paddingEnd="@dimen/space_s"
+                        android:paddingBottom="@dimen/space_2xs"
+                        android:text="@string/tela_perfil_tipo_padrao"
+                        android:textAppearance="@style/TextAppearance.App.BloodType" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_s"
+                        android:text="@string/tela_editar_perfil_fixo"
+                        android:textAppearance="@style/TextAppearance.App.Caption" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSalvar"
+                style="@style/Widget.App.Button.Primary"
+                android:layout_width="match_parent"
+                android:text="@string/tela_editar_perfil_botao" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnVoltar"
+                style="@style/Widget.App.Button.Text"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/space_xs"
+                android:text="@string/tela_voltar" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

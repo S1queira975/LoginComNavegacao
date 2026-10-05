@@ -58,6 +58,18 @@
         <activity
             android:name=".activity.ListaAgendamentosActivity"
             android:exported="false" />
+
+        <!-- Cartazinho do doador, aberto pelo topo da Home -->
+        <activity
+            android:name=".activity.PerfilActivity"
+            android:exported="false"
+            android:parentActivityName=".activity.HomeActivity" />
+
+        <!-- Edição de nome, email e senha -->
+        <activity
+            android:name=".activity.EditarPerfilActivity"
+            android:exported="false"
+            android:parentActivityName=".activity.PerfilActivity" />
         
         <meta-data
             android:name="preloaded_fonts"
