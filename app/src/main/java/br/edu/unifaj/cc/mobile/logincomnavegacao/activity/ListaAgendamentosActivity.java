@@ -8,8 +8,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -19,9 +17,10 @@ import br.edu.unifaj.cc.mobile.logincomnavegacao.R;
 import br.edu.unifaj.cc.mobile.logincomnavegacao.adapter.AgendamentoAdapter;
 import br.edu.unifaj.cc.mobile.logincomnavegacao.model.entity.Agendamento;
 import br.edu.unifaj.cc.mobile.logincomnavegacao.model.user.Doador;
+import br.edu.unifaj.cc.mobile.logincomnavegacao.util.AutoFitGridLayoutManager;
 import br.edu.unifaj.cc.mobile.logincomnavegacao.util.PrefsManager;
 
-public class ListaAgendamentosActivity extends AppCompatActivity {
+public class ListaAgendamentosActivity extends BaseActivity {
     
     private RecyclerView recyclerAgendamentos;
     private TextView txtSemAgendamentos;
@@ -55,7 +54,8 @@ public class ListaAgendamentosActivity extends AppCompatActivity {
         txtSemAgendamentos = findViewById(R.id.txtSemAgendamentos);
         btnVoltar = findViewById(R.id.btnVoltar);
         
-        recyclerAgendamentos.setLayoutManager(new LinearLayoutManager(this));
+        // Colunas automáticas conforme a largura da tela.
+        recyclerAgendamentos.setLayoutManager(new AutoFitGridLayoutManager(this));
         
         carregarAgendamentos();
         
@@ -69,12 +69,13 @@ public class ListaAgendamentosActivity extends AppCompatActivity {
             agendamentos = new ArrayList<>();
         }
         
-        adapter = new AgendamentoAdapter(agendamentos, new AgendamentoAdapter.OnAgendamentoClickListener() {
-            @Override
-            public void onCancelarClick(Agendamento agendamento, int position) {
-                confirmarCancelamento(agendamento, position);
-            }
-        });
+        adapter = new AgendamentoAdapter(agendamentos, prefsManager.getQuantidadesPorAgendamento(),
+                new AgendamentoAdapter.OnAgendamentoClickListener() {
+                    @Override
+                    public void onCancelarClick(Agendamento agendamento, int position) {
+                        confirmarCancelamento(agendamento, position);
+                    }
+                });
         
         recyclerAgendamentos.setAdapter(adapter);
         

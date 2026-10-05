@@ -1,43 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<!--
+    Item de agendamento.
+
+    A pílula de status recebe cor via código (colorStateList) para não depender
+    de cores literais no XML - assim os tokens do tema continuam exclusivos.
+-->
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/Widget.App.Card.Filled"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="12dp"
-    app:cardBackgroundColor="#FFFFFF"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="4dp">
+    android:layout_margin="@dimen/space_3xs">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="@dimen/space_m">
 
         <TextView
             android:id="@+id/txtHemocentro"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_medium"
-            android:text="Hemocentro"
-            android:textColor="#000000"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textAppearance="@style/TextAppearance.App.Title" />
 
         <TextView
             android:id="@+id/txtEndereco"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/montserrat_medium"
-            android:text="Endereço"
-            android:textColor="#666666"
-            android:textSize="12sp" />
+            android:layout_marginTop="@dimen/space_3xs"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textAppearance="@style/TextAppearance.App.Caption" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="@dimen/space_s"
+            android:baselineAligned="false"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -49,20 +51,15 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:text="Data"
-                    android:textColor="#999999"
-                    android:textSize="12sp" />
+                    android:text="@string/item_agendamento_data_label"
+                    android:textAppearance="@style/TextAppearance.App.Label" />
 
                 <TextView
                     android:id="@+id/txtData"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:text="01/01/2025"
-                    android:textColor="#000000"
-                    android:textSize="14sp" />
-
+                    android:layout_marginTop="@dimen/space_3xs"
+                    android:textAppearance="@style/TextAppearance.App.Body" />
             </LinearLayout>
 
             <LinearLayout
@@ -74,54 +71,64 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:text="Hora"
-                    android:textColor="#999999"
-                    android:textSize="12sp" />
+                    android:text="@string/item_agendamento_hora_label"
+                    android:textAppearance="@style/TextAppearance.App.Label" />
 
                 <TextView
                     android:id="@+id/txtHora"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:text="09:00"
-                    android:textColor="#000000"
-                    android:textSize="14sp" />
-
+                    android:layout_marginTop="@dimen/space_3xs"
+                    android:textAppearance="@style/TextAppearance.App.Body" />
             </LinearLayout>
-
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="@dimen/space_s"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/txtStatus"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/montserrat_medium"
-                android:text="PENDENTE"
-                android:textColor="#FF9800"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/btnCancelar"
+                style="@style/Widget.App.StatusPill"
                 android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:backgroundTint="#F44336"
-                android:fontFamily="@font/montserrat_medium"
-                android:text="Cancelar"
-                android:textColor="#FFFFFF"
-                android:textSize="12sp" />
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/touch_target_min"
+                android:paddingTop="@dimen/space_2xs"
+                android:paddingBottom="@dimen/space_2xs" />
 
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCancelar"
+                style="@style/Widget.App.Button.Compact"
+                android:layout_width="wrap_content"
+                android:text="@string/item_agendamento_cancelar"
+                android:textColor="?attr/colorError"
+                app:backgroundTint="?attr/colorErrorContainer"
+                app:icon="@drawable/ic_logout"
+                app:iconTint="?attr/colorError" />
         </LinearLayout>
+
+        <!-- Retorno do fluxo de registro: quantas bolsas saíram deste agendamento -->
+        <TextView
+            android:id="@+id/txtBolsasRegistradas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_xs"
+            android:drawablePadding="@dimen/space_xs"
+            android:gravity="center_vertical"
+            android:textAppearance="@style/TextAppearance.App.Caption"
+            android:textColor="?attr/colorPrimary"
+            android:visibility="gone"
+            app:drawableStartCompat="@drawable/ic_drop"
+            app:drawableTint="?attr/colorPrimary" />
 
     </LinearLayout>
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>
