@@ -6,8 +6,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
 
 import br.edu.unifaj.cc.mobile.logincomnavegacao.R;
 import br.edu.unifaj.cc.mobile.logincomnavegacao.util.PrefsManager;
@@ -17,7 +15,7 @@ import br.edu.unifaj.cc.mobile.logincomnavegacao.util.ValidacaoUtils;
  * Activity responsável pela tela de login.
  * Valida email e senha do usuário.
  */
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
     private EditText editEmail;
     private EditText editSenha;
     private Button btnEntrar;
@@ -27,7 +25,6 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
         
         // Inicializa o gerenciador de preferências
