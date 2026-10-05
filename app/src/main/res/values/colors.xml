@@ -1,5 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    Paleta do tema CLARO (Material 3), derivada do vermelho da marca (#AD2C2C / logo #C02040).
+
+    Regra de auto-contraste: cada papel "X" é sempre usado junto do seu par "onX".
+    Os pares garantem no minimo WCAG AA (4.5:1 para texto, 3:1 para icones/bordas),
+    entao trocar o tema para o escuro nunca produz texto ilegivel.
+-->
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+
+    <!-- ===== Primario: vermelho da marca ===== -->
+    <color name="md_primary">#A32C31</color>
+    <color name="md_on_primary">#FFFFFF</color>
+    <color name="md_primary_container">#FFDAD8</color>
+    <color name="md_on_primary_container">#410007</color>
+
+    <!-- ===== Secundario: vermelho dessaturado (apoio, rotulos) ===== -->
+    <color name="md_secondary">#755658</color>
+    <color name="md_on_secondary">#FFFFFF</color>
+    <color name="md_secondary_container">#FFDAD8</color>
+    <color name="md_on_secondary_container">#2C1516</color>
+
+    <!-- ===== Terciario: carmim de apoio (chips, destaques) ===== -->
+    <color name="md_tertiary">#9C4046</color>
+    <color name="md_on_tertiary">#FFFFFF</color>
+    <color name="md_tertiary_container">#FFDADB</color>
+    <color name="md_on_tertiary_container">#40000B</color>
+
+    <!-- ===== Erro / cancelamento ===== -->
+    <color name="md_error">#BA1A1A</color>
+    <color name="md_on_error">#FFFFFF</color>
+    <color name="md_error_container">#FFDAD6</color>
+    <color name="md_on_error_container">#410002</color>
+
+    <!-- ===== Superficies ===== -->
+    <color name="md_background">#FFF8F7</color>
+    <color name="md_on_background">#231918</color>
+    <color name="md_surface">#FFF8F7</color>
+    <color name="md_on_surface">#231918</color>
+    <color name="md_surface_variant">#F5DDDB</color>
+    <color name="md_on_surface_variant">#534342</color>
+
+    <color name="md_surface_dim">#DED4D3</color>
+    <color name="md_surface_bright">#FFF8F7</color>
+    <color name="md_surface_container_lowest">#FFFFFF</color>
+    <color name="md_surface_container_low">#FFF1EF</color>
+    <color name="md_surface_container">#FCEBE9</color>
+    <color name="md_surface_container_high">#F7E5E4</color>
+    <color name="md_surface_container_highest">#F1DFDD</color>
+
+    <!-- ===== Contornos ===== -->
+    <color name="md_outline">#857372</color>
+    <color name="md_outline_variant">#D8C2C0</color>
+    <color name="md_inverse_surface">#392E2D</color>
+    <color name="md_inverse_on_surface">#FFEDEA</color>
+    <color name="md_inverse_primary">#FFB3B2</color>
+
+    <!-- ===== Gradiente do topo (tela de login) ===== -->
+    <color name="hero_start">#7C1A1E</color>
+    <color name="hero_end">#B92F33</color>
+
+    <!-- O logo e vermelho, entao o fundo que o envolve e sempre claro ===== -->
+    <color name="logo_badge">#FFFFFFFF</color>
+
+    <!--
+        Vermelho da marca para o que fica SOBRE o circulo claro (logo_badge).
+        Como o circulo e branco nos dois temas, este tom nao precisa de variante
+        noturna: e a mesma cor do logo, e mantem 5.9:1 em qualquer modo.
+    -->
+    <color name="brand_on_badge">#C02040</color>
+
+    <!-- ===== Status de agendamento (auto-contraste com o respective fundo) ===== -->
+    <color name="status_pendente">#8A5000</color>
+    <color name="status_pendente_container">#FFDDB3</color>
+    <color name="status_confirmado">#17653E</color>
+    <color name="status_confirmado_container">#B7F0CC</color>
+    <color name="status_cancelado">#BA1A1A</color>
+    <color name="status_cancelado_container">#FFDAD6</color>
+    <color name="status_realizado">#0C4F8F</color>
+    <color name="status_realizado_container">#D3E4FF</color>
+
+    <!-- ===== Textos sobre o gradiente do topo ===== -->
+    <color name="on_hero">#FFFFFFFF</color>
+    <color name="on_hero_variant">#FFE1DF</color>
+
 </resources>

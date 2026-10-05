@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Flags de sistema dependentes do tema.
+    O tema le estes booleans, entao existe apenas UMA definicao de tema
+    (values/themes.xml) e o Android escolhe o valor certo em cada modo.
+-->
+<resources>
+    <!-- icones escuros na barra de status: true no tema claro -->
+    <bool name="window_light_status_bar">true</bool>
+    <bool name="window_light_navigation_bar">true</bool>
+</resources>

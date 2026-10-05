@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Medidas base. Os valores sao substituidos automaticamente por
+    values-sw600dp/dimens.xml em tablets, o que da o comportamento responsivo
+    sem nenhum codigo Java.
+-->
+<resources>
+
+    <!-- ===== Espacamento (escala de 4dp) ===== -->
+    <dimen name="space_3xs">4dp</dimen>
+    <dimen name="space_2xs">6dp</dimen>
+    <dimen name="space_xs">8dp</dimen>
+    <dimen name="space_s">12dp</dimen>
+    <dimen name="space_m">16dp</dimen>
+    <dimen name="space_l">24dp</dimen>
+    <dimen name="space_xl">32dp</dimen>
+
+    <!-- Margem lateral da tela -->
+    <dimen name="screen_margin">20dp</dimen>
+
+    <!-- Largura maxima do conteudo: em telas largas o conteudo fica centralizado -->
+    <dimen name="content_max_width">520dp</dimen>
+
+    <!-- ===== Tipografia ===== -->
+    <dimen name="text_display">26sp</dimen>
+    <dimen name="text_headline">20sp</dimen>
+    <dimen name="text_title">17sp</dimen>
+    <dimen name="text_body">15sp</dimen>
+    <dimen name="text_label">13sp</dimen>
+    <dimen name="text_caption">12sp</dimen>
+    <dimen name="text_metric">32sp</dimen>
+
+    <!-- ===== Cantos ===== -->
+    <dimen name="corner_m">16dp</dimen>
+    <dimen name="corner_l">24dp</dimen>
+    <dimen name="corner_full">999dp</dimen>
+
+    <!-- ===== Componentes ===== -->
+    <dimen name="button_height">52dp</dimen>
+    <dimen name="button_height_small">40dp</dimen>
+    <dimen name="field_min_height">56dp</dimen>
+    <dimen name="touch_target_min">48dp</dimen>
+    <dimen name="icon_size">24dp</dimen>
+    <!-- Ícone miúdo, para a faixa do rodapé do cartazinho -->
+    <dimen name="icon_size_s">16dp</dimen>
+    <dimen name="icon_size_m">40dp</dimen>
+    <!-- Avatar com as iniciais do doador no cartazinho do perfil -->
+    <dimen name="icon_size_l">56dp</dimen>
+    <dimen name="logo_size">96dp</dimen>
+    <dimen name="card_elevation">0dp</dimen>
+
+    <!-- Barra de nivel do cartazinho. Espessura e raio andam juntos -->
+    <dimen name="progress_thickness">8dp</dimen>
+    <dimen name="progress_corner_radius">4dp</dimen>
+
+    <!-- Altura do cabecalho hero das telas de login/cadastro -->
+    <dimen name="hero_logo_size">88dp</dimen>
+
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Cor da borda dos campos de texto.
+    Focado usa o vermelho da marca; em repouso usa o contorno do tema.
+    Como aponta para recursos de cor, acompanha o tema claro/escuro.
+-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/md_primary" android:state_focused="true" />
+    <item android:color="@color/md_primary" android:state_hovered="true" />
+    <item android:color="@color/md_outline" />
+</selector>

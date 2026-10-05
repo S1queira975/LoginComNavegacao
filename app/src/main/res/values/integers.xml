@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Numeros que mudam por tamanho de tela.
+    list_min_item_width e a largura minima de um item de lista em dp: o
+    AutoFitGridLayoutManager usa isso para calcular quantas colunas cabem.
+-->
+<resources>
+    <integer name="list_min_item_width">300</integer>
+</resources>
