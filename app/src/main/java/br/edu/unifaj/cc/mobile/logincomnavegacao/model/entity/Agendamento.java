@@ -9,8 +9,6 @@ public class Agendamento {
     private Hemocentro hemocentro;
     private String cpfDoador;
     private StatusAgendamento status;
-    private String dataConfirmacao;
-    private String observacoes;
 
     public Agendamento() {
     }
@@ -72,28 +70,8 @@ public class Agendamento {
         this.status = status;
     }
 
-    public String getDataConfirmacao() {
-        return dataConfirmacao;
-    }
-
-    public void setDataConfirmacao(String dataConfirmacao) {
-        this.dataConfirmacao = dataConfirmacao;
-    }
-
-    public String getObservacoes() {
-        return observacoes;
-    }
-
-    public void setObservacoes(String observacoes) {
-        this.observacoes = observacoes;
-    }
-
     public boolean isPendente() {
         return status == StatusAgendamento.PENDENTE;
-    }
-
-    public boolean isConfirmado() {
-        return status == StatusAgendamento.CONFIRMADO;
     }
 
     public boolean isCancelado() {
@@ -102,10 +80,6 @@ public class Agendamento {
 
     public boolean isRealizado() {
         return status == StatusAgendamento.REALIZADO;
-    }
-
-    public void confirmar() {
-        this.status = StatusAgendamento.CONFIRMADO;
     }
 
     public void cancelar() {

@@ -108,6 +108,7 @@ public class EditarPerfilActivity extends BaseActivity {
         doador.setNome(nome);
         doador.setEmail(email);
         prefsManager.salvarDoador(doador);
+        prefsManager.atualizarEmailLogado(email);
 
         Toast.makeText(this, R.string.tela_editar_perfil_salvo, Toast.LENGTH_SHORT).show();
         finish();

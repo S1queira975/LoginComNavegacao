@@ -55,7 +55,12 @@ public class PrefsManager {
     
     public boolean login(String email, String senha) {
         Doador doador = getDoador();
-        if (doador != null && doador.getEmail().equals(email) && doador.getSenha().equals(senha)) {
+        if (doador == null || email == null || senha == null) {
+            return false;
+        }
+        // A comparacao comeca pelo texto digitado: getEmail()/getSenha() podem
+        // ser null em um doador gravado por uma versao anterior do cadastro.
+        if (email.equals(doador.getEmail()) && senha.equals(doador.getSenha())) {
             prefs.edit().putString(KEY_LOGGED_EMAIL, email).apply();
             return true;
         }
@@ -69,16 +74,19 @@ public class PrefsManager {
     public void logout() {
         prefs.edit().remove(KEY_LOGGED_EMAIL).apply();
     }
-    
-    public String getLoggedEmail() {
-        return prefs.getString(KEY_LOGGED_EMAIL, null);
+
+    /**
+     * Mantem o marcador de sessao alinhado depois que o doador troca o email.
+     *
+     * O valor atual so sinaliza que alguem esta logado, mas gravar o email
+     * novo evita que uma leitura futura da sessao receba o endereco antigo.
+     */
+    public void atualizarEmailLogado(String email) {
+        if (isLoggedIn() && email != null) {
+            prefs.edit().putString(KEY_LOGGED_EMAIL, email).apply();
+        }
     }
-    
-    public void salvarBolsas(List<BolsaSangue> bolsas) {
-        String json = gson.toJson(bolsas);
-        prefs.edit().putString(KEY_BOLSAS, json).apply();
-    }
-    
+
     public List<BolsaSangue> getBolsas() {
         String json = prefs.getString(KEY_BOLSAS, null);
         if (json != null) {
@@ -86,12 +94,6 @@ public class PrefsManager {
             return gson.fromJson(json, listType);
         }
         return new ArrayList<>();
-    }
-    
-    public void adicionarBolsa(BolsaSangue bolsa) {
-        List<BolsaSangue> bolsas = getBolsas();
-        bolsas.add(bolsa);
-        salvarBolsas(bolsas);
     }
     
     public void salvarAgendamentos(List<Agendamento> agendamentos) {
@@ -277,34 +279,5 @@ public class PrefsManager {
             }
         }
         return filtrados;
-    }
-    
-    public void limparDados() {
-        prefs.edit().clear().apply();
-    }
-    
-    // Métodos de compatibilidade (deprecated)
-    @Deprecated
-    public void salvarUser(Object user) {
-        if (user instanceof Doador) {
-            salvarDoador((Doador) user);
-        }
-    }
-    
-    @Deprecated
-    public Object getUser() {
-        return getDoador();
-    }
-    
-    @Deprecated
-    public List<?> getDoacoes() {
-        return getBolsas();
-    }
-    
-    @Deprecated
-    public void adicionarDoacao(Object doacao) {
-        if (doacao instanceof BolsaSangue) {
-            adicionarBolsa((BolsaSangue) doacao);
-        }
     }
 }

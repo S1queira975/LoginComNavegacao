@@ -1,18 +1,20 @@
 # Controle de Doação de Sangue
 
-Aplicativo Android simples para controle de doações de sangue.
+Aplicativo Android simples para agendamento e controle de doações de sangue.
 
 ## Descrição
 
-Aplicativo desenvolvido em Java para Android Studio que permite o registro e acompanhamento de doações de sangue. Utiliza SharedPreferences para persistência de dados local, sem necessidade de banco de dados externo.
+Aplicativo desenvolvido em Java para Android Studio que permite criar agendamentos, registrar coletas a partir deles e acompanhar o histórico local. Utiliza SharedPreferences para persistência de dados local, sem necessidade de banco de dados externo.
 
 ## Funcionalidades
 
-- Login de usuários cadastrados
-- Cadastro de novos usuários com tipo sanguíneo
+- Login de doadores cadastrados
+- Cadastro de doadores com CPF e tipo sanguíneo
 - Perfil em formato de cartazinho, com edição de nome, email e senha
-- Registro de doações (data, local, quantidade)
-- Histórico de doações realizadas
+- Agendamento de doações por hemocentro, data e hora
+- Lista de agendamentos, com cancelamento quando pendente
+- Registro de coleta a partir de agendamento elegível
+- Histórico de lotes registrados, com código, tipo, volume, local, coleta e validade
 - Interface simples e intuitiva
 
 ## Tecnologias
@@ -89,8 +91,9 @@ app/src/main/java/br/edu/unifaj/cc/mobile/logincomnavegacao/
 │   ├── DateUtils.java
 │   └── ValidacaoUtils.java
 ├── adapter/
-│   ├── MenuHomeAdapter.java   # Cards do menu principal
+│   ├── MenuHomeAdapter.java                # Cards do menu principal
 │   ├── AgendamentoAdapter.java
+│   ├── AgendamentoParaRegistroAdapter.java
 │   └── BolsaSangueAdapter.java
 ├── activity/
 │   ├── BaseActivity.java      # Base: edge-to-edge + insets
@@ -98,6 +101,7 @@ app/src/main/java/br/edu/unifaj/cc/mobile/logincomnavegacao/
 │   ├── CadastroActivity.java
 │   ├── HomeActivity.java
 │   ├── DoacaoActivity.java
+│   ├── RegistrarDoacaoActivity.java
 │   ├── AgendamentoActivity.java
 │   ├── HistoricoActivity.java
 │   ├── ListaAgendamentosActivity.java
@@ -107,15 +111,31 @@ app/src/main/java/br/edu/unifaj/cc/mobile/logincomnavegacao/
     └── HemocentroDAO.java
 ```
 
+Os testes unitários estão em:
+
+```text
+app/src/test/java/br/edu/unifaj/cc/mobile/logincomnavegacao/
+├── model/
+│   ├── NivelDoadorTest.java
+│   └── enums/
+│       └── TipoSanguineoTest.java
+└── util/
+    ├── DateUtilsTest.java
+    └── ValidacaoUtilsTest.java
+```
+
 ## Fluxo das Telas
 
-1. **Login** → Usuário acessa com email e senha
-2. **Cadastro** → Novo usuário se registra
+1. **Login** → Doador acessa com email e senha
+2. **Cadastro** → Novo doador se registra
 3. **Home** → Menu principal após login
 4. **Perfil** → Cartazinho do doador, aberto pelo topo da Home
 5. **Editar Perfil** → Altera nome, email e senha
-6. **Doação** → Registra nova doação
-7. **Histórico** → Lista de doações realizadas
+6. **Agendar doação** → Cria agendamento por hemocentro, data e hora
+7. **Meus agendamentos** → Lista agendamentos e permite cancelar pendentes
+8. **Registrar coleta** → Escolhe um agendamento elegível
+9. **Confirmar coleta** → Registra volume e quantidade a partir do agendamento
+10. **Histórico** → Lista os lotes registrados
 
 ## Como Executar
 
@@ -133,56 +153,96 @@ app/src/main/java/br/edu/unifaj/cc/mobile/logincomnavegacao/
 ### Via Linha de Comando
 
 ```bash
+./gradlew testDebugUnitTest
 ./gradlew assembleDebug
+./gradlew lintDebug
 ```
 
 ## Dados Armazenados
 
-Os dados são armazenados localmente no dispositivo usando SharedPreferences no formato JSON:
+Os dados são armazenados localmente no dispositivo, em SharedPreferences, no formato JSON. O arquivo chama-se `PrefDoacaoSangue`.
 
-### Usuário (SharedPreferences key: "user")
+| Chave | Conteúdo |
+|-------|----------|
+| `doador` | Doador cadastrado no aparelho |
+| `bolsas_sangue` | Lotes registrados a partir de agendamentos |
+| `agendamentos` | Agendamentos do doador |
+| `logged_email` | Marcador de sessão do login atual |
+
+### Doador (`doador`)
+
 ```json
 {
   "nome": "João Silva",
   "email": "joao@email.com",
   "senha": "123456",
-  "tipoSanguineo": "O+"
+  "cpf": "12345678909",
+  "tipoSanguineo": "O",
+  "fatorRh": "POSITIVO"
 }
 ```
 
-### Lista de Doações (SharedPreferences key: "doacoes")
+### Agendamento (`agendamentos`)
+
 ```json
-[
-  {
-    "data": "13/04/2026",
-    "local": "Hospital Central",
-    "quantidade": "450ml"
+{
+  "id": "a3f7d2c4-1b5e-4a9c-8f2d-6e5b4c3a2910",
+  "data": "30/12/2025",
+  "hora": "09:30",
+  "hemocentro": {
+    "id": "HEMO-001",
+    "nome": "Hemocentro Central de São Paulo"
   },
-  {
-    "data": "01/03/2026",
-    "local": "Hemocentro Municipal",
-    "quantidade": "450ml"
-  }
-]
+  "cpfDoador": "12345678909",
+  "status": "PENDENTE"
+}
 ```
+
+### Lote registrado (`bolsas_sangue`)
+
+```json
+{
+  "codigo": "BS-9F3A2C1D",
+  "tipoSanguineo": "O",
+  "fatorRh": "POSITIVO",
+  "dataColeta": "30/12/2025",
+  "dataValidade": "10/02/2026",
+  "volumeMl": 450,
+  "quantidade": 2,
+  "status": "DISPONIVEL",
+  "agendamentoId": "a3f7d2c4-1b5e-4a9c-8f2d-6e5b4c3a2910"
+}
+```
+
+A senha é guardada localmente em texto puro. Ela não é enviada para backup:
+`backup_rules.xml` e `data_extraction_rules.xml` excluem
+`PrefDoacaoSangue.xml` do backup em nuvem e da transferência entre aparelhos.
 
 ## Regras de Negócio
 
-- Campos vazios não são permitidos em nenhuma tela
-- Login validar email e senha salvos
-- Apenas usuários logados podem registrar doações
-- Histórico exibe todas as doações do usuário
+- Campos vazios não são permitidos em nenhuma tela.
+- O email precisa ter formato válido; a senha precisa ter ao menos 6 caracteres.
+- O CPF precisa ter 11 dígitos, com ou sem máscara.
+- Apenas doadores logados podem agendar, registrar coleta, ver agendamentos e ver o histórico.
+- A data do agendamento começa em hoje; a coleta só pode ser registrada quando a data é hoje ou já passou.
+- Cada agendamento gera no máximo um lote: agendamento cancelado, realizado, futuro ou já registrado não é elegível.
+- Cada coleta usa volume de 200 a 470 ml e quantidade de 1 a 6 bolsas.
+- A validade do lote é a data da coleta mais 42 dias.
+- O nível do doador conta registros de coleta e trava em 3; o número de bolsas da sessão não muda o nível.
+- Trocar o email também atualiza o marcador da sessão ativa.
 
 ## Descrição das Classes
 
 ### Model
 
-- **User.java**: Classe modelo com atributos nome, email, senha e tipoSanguineo
-- **Doacao.java**: Classe modelo com atributos data, local e quantidade
+- **User.java**: Classe abstrata com nome, email e senha
+- **Doador.java**: Estende `User` e adiciona CPF, tipo sanguíneo e fator Rh
+- **DateUtils.java**: Datas estritas em `dd/MM/yyyy`; texto inválido não gera data nem libera coleta
 
 ### Util
 
-- **PrefsManager.java**: Classe auxiliar para gerenciar dados no SharedPreferences, com métodos para salvar/recuperar usuário, fazer login, salvar/listar doações
+- **PrefsManager.java**: Gerencia login/sessão, doador, agendamentos, bolsas e elegibilidade da coleta
+- **ValidacaoUtils.java**: Valida campos obrigatórios, email, CPF, senha, volume e quantidade
 
 ### Adapter
 
@@ -345,10 +405,10 @@ model/
 │   ├── Agendamento
 │   └── BolsaSangue
 └── user/
-    ├── User
+    ├── User (abstrata)
     └── Doador
 ```
 
 ## Licença
 
-MIT
+Nenhum arquivo de licença está incluído neste repositório.

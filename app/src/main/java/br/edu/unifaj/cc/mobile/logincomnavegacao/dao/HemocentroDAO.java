@@ -55,13 +55,4 @@ public class HemocentroDAO {
     public static List<Hemocentro> getTodos() {
         return new ArrayList<>(hemocentros);
     }
-    
-    public static Hemocentro getPorId(String id) {
-        for (Hemocentro h : hemocentros) {
-            if (h.getId().equals(id)) {
-                return h;
-            }
-        }
-        return null;
-    }
 }

@@ -72,7 +72,9 @@ public class BolsaSangueAdapter extends RecyclerView.Adapter<BolsaSangueAdapter.
             holder.txtLocal.setText(R.string.item_bolsa_local_vazio);
         }
 
-        StatusBolsa status = bolsa.getStatus();
+        // Bolsa gravada antes de o status existir, ou vinda de outra versao, desserializa
+        // sem o campo. Sem esta guarda, getDescricao() estoura null.
+        StatusBolsa status = bolsa.getStatus() == null ? StatusBolsa.DISPONIVEL : bolsa.getStatus();
         holder.txtStatus.setText(status.getDescricao());
         aplicarStatus(holder.txtStatus, context, status);
     }

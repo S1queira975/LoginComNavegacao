@@ -1,9 +1,7 @@
 package br.edu.unifaj.cc.mobile.logincomnavegacao.model.user;
 
-import br.edu.unifaj.cc.mobile.logincomnavegacao.model.User;
 import br.edu.unifaj.cc.mobile.logincomnavegacao.model.enums.TipoSanguineo;
 import br.edu.unifaj.cc.mobile.logincomnavegacao.model.enums.FatorRh;
-
 
 public class Doador extends User {
     private String cpf;

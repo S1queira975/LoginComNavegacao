@@ -136,10 +136,6 @@
         <item quantity="one">%1$d bolsa</item>
         <item quantity="other">%1$d bolsas</item>
     </plurals>
-    <string name="item_doacao_data">Data: %1$s</string>
-    <string name="item_doacao_local">Local: %1$s</string>
-    <string name="item_doacao_quantidade">Quantidade: %1$s</string>
-
     <!-- ================= Mensagens ================= -->
     <string name="msg_coleta_registrada">Coleta registrada com sucesso</string>
     <string name="msg_coleta_duplicada">Este agendamento já tem coleta registrada</string>

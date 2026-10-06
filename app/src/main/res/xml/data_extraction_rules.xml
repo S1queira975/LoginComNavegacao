@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-   Sample data extraction rules file; uncomment and customize as necessary.
-   See https://developer.android.com/about/versions/12/backup-restore#xml-changes
-   for details.
+   Regras de extracao de dados (Android 12+).
+   Ver https://developer.android.com/about/versions/12/backup-restore#xml-changes
 -->
 <data-extraction-rules>
     <cloud-backup>
-        <!-- TODO: Use <include> and <exclude> to control what is backed up.
-        <include .../>
-        <exclude .../>
+        <!--
+            O doador e salvo em SharedPreferences com a senha em texto puro.
+            Enviar esse arquivo para a nuvem colocaria a senha de todos os
+            doadores em um servidor que nao e da aplicacao, entao ele fica
+            de fora das duas direcoes.
         -->
+        <exclude
+            domain="sharedpref"
+            path="PrefDoacaoSangue.xml" />
     </cloud-backup>
-    <!--
     <device-transfer>
-        <include .../>
-        <exclude .../>
+        <exclude
+            domain="sharedpref"
+            path="PrefDoacaoSangue.xml" />
     </device-transfer>
-    -->
 </data-extraction-rules>

@@ -19,8 +19,6 @@ public class BolsaSangue {
     private StatusBolsa status;
     private Hemocentro hemocentroOrigem;
     private String agendamentoId;
-    private String receptorCpf;
-    private String dataDestinacao;
 
     public BolsaSangue() {
         this.quantidade = 1;
@@ -129,13 +127,6 @@ public class BolsaSangue {
         this.quantidade = quantidade;
     }
 
-    /**
-     * Volume total do lote, soma de todas as bolsas.
-     */
-    public int getVolumeTotalMl() {
-        return volumeMl * Math.max(quantidade, 1);
-    }
-
     public StatusBolsa getStatus() {
         return status;
     }
@@ -164,34 +155,10 @@ public class BolsaSangue {
         this.agendamentoId = agendamentoId;
     }
 
-    public boolean veioDeAgendamento() {
-        return agendamentoId != null && !agendamentoId.isEmpty();
-    }
-
-    public String getReceptorCpf() {
-        return receptorCpf;
-    }
-
-    public void setReceptorCpf(String receptorCpf) {
-        this.receptorCpf = receptorCpf;
-    }
-
-    public String getDataDestinacao() {
-        return dataDestinacao;
-    }
-
-    public void setDataDestinacao(String dataDestinacao) {
-        this.dataDestinacao = dataDestinacao;
-    }
-
     public String getTipoCompleto() {
         if (tipoSanguineo == null || fatorRh == null) {
             return null;
         }
         return tipoSanguineo.getValor() + fatorRh.getValor();
-    }
-
-    public boolean estaDisponivel() {
-        return status == StatusBolsa.DISPONIVEL;
     }
 }

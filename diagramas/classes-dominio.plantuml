@@ -25,6 +25,7 @@ package "model.enums" {
     A, B, AB, O
     + getValor(): String
     + fromValor(String): TipoSanguineo
+    + fromValorCompleto(String): TipoSanguineo
   }
 
   enum FatorRh {
@@ -47,7 +48,7 @@ package "model.enums" {
 ' =======================
 package "model.user" {
 
-  class User {
+  abstract class User {
     - nome: String
     - email: String
     - senha: String
@@ -111,15 +112,11 @@ package "model.entity" {
     - hemocentro: Hemocentro
     - cpfDoador: String
     - status: StatusAgendamento
-    - dataConfirmacao: String
-    - observacoes: String
     + isPendente(): boolean
-    + isConfirmado(): boolean
     + isCancelado(): boolean
     + isRealizado(): boolean
-    + confirmar()
     + cancelar()
-    +marcarRealizado()
+    + marcarRealizado()
   }
 
   class BolsaSangue {
@@ -129,12 +126,12 @@ package "model.entity" {
     - dataColeta: String
     - dataValidade: String
     - volumeMl: int
+    - quantidade: int
     - status: StatusBolsa
     - hemocentroOrigem: Hemocentro
-    - receptorCpf: String
-    - dataDestinacao: String
+    - agendamentoId: String
+    + fromAgendamento(Agendamento, TipoSanguineo, FatorRh, int, int): BolsaSangue
     + getTipoCompleto(): String
-    + estaDisponivel(): boolean
   }
 
 }
@@ -146,6 +143,13 @@ package "adapter" {
 
   abstract class RecyclerView.Adapter
 
+  class MenuHomeAdapter {
+    - itens: List<ItemMenu>
+    + onCreateViewHolder()
+    + onBindViewHolder()
+    + getItemCount()
+  }
+
   class AgendamentoAdapter {
     - agendamentos: List<Agendamento>
     - listener: OnAgendamentoClickListener
@@ -154,9 +158,24 @@ package "adapter" {
     + getItemCount()
   }
 
-  class BolsaSangueAdapter
+  class AgendamentoParaRegistroAdapter {
+    - agendamentos: List<Agendamento>
+    - listener: OnAgendamentoSelecionadoListener
+    + onCreateViewHolder()
+    + onBindViewHolder()
+    + getItemCount()
+  }
 
+  class BolsaSangueAdapter {
+    - bolsas: List<BolsaSangue>
+    + onCreateViewHolder()
+    + onBindViewHolder()
+    + getItemCount()
+  }
+
+  RecyclerView.Adapter <|-- MenuHomeAdapter
   RecyclerView.Adapter <|-- AgendamentoAdapter
+  RecyclerView.Adapter <|-- AgendamentoParaRegistroAdapter
   RecyclerView.Adapter <|-- BolsaSangueAdapter
 }
 
@@ -168,7 +187,9 @@ package "adapter" {
 Doador --|> User
 
 ' Herança - adapter
+MenuHomeAdapter --|> RecyclerView.Adapter
 AgendamentoAdapter --|> RecyclerView.Adapter
+AgendamentoParaRegistroAdapter --|> RecyclerView.Adapter
 BolsaSangueAdapter --|> RecyclerView.Adapter
 
 ' Composição
@@ -178,5 +199,7 @@ Hemocentro *-- Endereco
 Agendamento --> Hemocentro
 BolsaSangue --> Hemocentro
 AgendamentoAdapter --> Agendamento
+AgendamentoParaRegistroAdapter --> Agendamento
+BolsaSangueAdapter --> BolsaSangue
 
 @enduml

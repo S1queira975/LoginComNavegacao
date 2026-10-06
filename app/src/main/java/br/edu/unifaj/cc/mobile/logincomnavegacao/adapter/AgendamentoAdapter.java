@@ -67,7 +67,10 @@ public class AgendamentoAdapter extends RecyclerView.Adapter<AgendamentoAdapter.
         holder.txtData.setText(agendamento.getData());
         holder.txtHora.setText(agendamento.getHora());
 
-        StatusAgendamento status = agendamento.getStatus();
+        // Agendamento gravado antes de o status existir desserializa sem o campo.
+        StatusAgendamento status = agendamento.getStatus() == null
+                ? StatusAgendamento.PENDENTE
+                : agendamento.getStatus();
         holder.txtStatus.setText(status.getDescricao());
         aplicarStatus(holder.txtStatus, context, status);
 

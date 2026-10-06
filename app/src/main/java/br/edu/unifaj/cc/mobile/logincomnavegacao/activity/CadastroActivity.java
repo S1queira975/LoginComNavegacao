@@ -83,12 +83,9 @@ public class CadastroActivity extends BaseActivity {
             return;
         }
 
-        // Parse do tipo sanguíneo (ex: "A+", "A-", "O+", etc.)
-        String tipoStr = tipoCompleto.substring(0, 1);
-        String fatorStr = tipoCompleto.substring(1);
-
-        TipoSanguineo tipoSanguineo = TipoSanguineo.fromValor(tipoStr);
-        FatorRh fatorRh = FatorRh.fromValor(fatorStr);
+        // Parse do tipo sanguíneo (ex: "A+", "AB-", "O+", etc.)
+        TipoSanguineo tipoSanguineo = TipoSanguineo.fromValorCompleto(tipoCompleto);
+        FatorRh fatorRh = FatorRh.fromValor(fatorRestante(tipoCompleto, tipoSanguineo));
 
         if (tipoSanguineo == null || fatorRh == null) {
             Toast.makeText(this, "Tipo sanguíneo inválido", Toast.LENGTH_SHORT).show();
@@ -102,5 +99,24 @@ public class CadastroActivity extends BaseActivity {
         Toast.makeText(this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show();
 
         finish();
+    }
+
+    /**
+     * Devolve o fator Rh que sobrou do rotulo depois do tipo.
+     *
+     * "AB-" vira "-" e "O+" vira "+". Sem tipo reconhecido, devolve o rotulo
+     * inteiro: quem valida e o {@link FatorRh#fromValor(String)}, que rejeita.
+     */
+    private static String fatorRestante(String tipoCompleto, TipoSanguineo tipo) {
+        if (tipoCompleto == null) {
+            return null;
+        }
+        if (tipo == null) {
+            return tipoCompleto.trim();
+        }
+        String rotulo = tipoCompleto.trim();
+        return rotulo.length() > tipo.getValor().length()
+                ? rotulo.substring(tipo.getValor().length())
+                : "";
     }
 }

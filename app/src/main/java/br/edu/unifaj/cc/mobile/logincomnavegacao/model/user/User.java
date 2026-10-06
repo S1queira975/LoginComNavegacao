@@ -1,6 +1,13 @@
-package br.edu.unifaj.cc.mobile.logincomnavegacao.model;
+package br.edu.unifaj.cc.mobile.logincomnavegacao.model.user;
 
-public class User {
+/**
+ * Dados de identificacao que todo usuario tem.
+ *
+ * Hoje existe apenas o doador, que e a unica coisa que o app cadastra. A
+ * classe continua separada para que outro perfil (agente de saude, por
+ * exemplo) possa reaproveitar nome, email e senha sem repetir os campos.
+ */
+public abstract class User {
     private String nome;
     private String email;
     private String senha;

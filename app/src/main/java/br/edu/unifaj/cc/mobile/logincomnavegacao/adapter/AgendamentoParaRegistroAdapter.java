@@ -58,8 +58,12 @@ public class AgendamentoParaRegistroAdapter
                 agendamento.getData(), agendamento.getHora()));
         holder.txtEndereco.setText(agendamento.getHemocentro().getEndereco().getEnderecoCompleto());
 
-        holder.txtStatus.setText(agendamento.getStatus().getDescricao());
-        aplicarStatus(holder.txtStatus, context, agendamento.getStatus());
+        // Agendamento gravado antes de o status existir desserializa sem o campo.
+        StatusAgendamento status = agendamento.getStatus() == null
+                ? StatusAgendamento.PENDENTE
+                : agendamento.getStatus();
+        holder.txtStatus.setText(status.getDescricao());
+        aplicarStatus(holder.txtStatus, context, status);
 
         holder.itemView.setOnClickListener(v -> {
             int posicaoAtual = holder.getBindingAdapterPosition();
